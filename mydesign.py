@@ -1,4 +1,4 @@
-import sys
+import sys, random
 from Unit import *
 
 from PyQt5 import QtCore, QtGui, QtWidgets
@@ -124,6 +124,73 @@ class Ui_MainWindow(object):
         self.label_7.setGeometry(QtCore.QRect(350, 10, 141, 31))
         self.label_7.setObjectName("label_7")
 
+        self.pushButton_5 = QtWidgets.QPushButton(self.frame_4)
+        self.pushButton_5.setGeometry(QtCore.QRect(80, 530, 171, 25))
+        self.pushButton_5.setObjectName("pushButton_5")
+
+        self.frame_5 = QtWidgets.QFrame(self.centralwidget)
+        self.frame_5.setGeometry(QtCore.QRect(0, 0, 841, 571))
+        self.frame_5.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame_5.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame_5.setObjectName("frame_5")
+        self.frame_5.hide()
+
+        self.listWidget1 = QtWidgets.QListWidget(self.frame_5)
+        self.listWidget1.setGeometry(QtCore.QRect(10, 50, 411, 192))
+        self.listWidget1.setObjectName("listWidget")
+        
+        self.label_10 = QtWidgets.QLabel(self.frame_5)
+        self.label_10.setGeometry(QtCore.QRect(500, 50, 91, 17))
+        self.label_10.setObjectName("label_10")
+        
+        self.label_11 = QtWidgets.QLabel(self.frame_5)
+        self.label_11.setGeometry(QtCore.QRect(500, 120, 67, 17))
+        self.label_11.setObjectName("label_11")
+        
+        self.label_12 = QtWidgets.QLabel(self.frame_5)
+        self.label_12.setGeometry(QtCore.QRect(340, 20, 231, 17))
+        self.label_12.setObjectName("label_12")
+        
+        self.listWidget2 = QtWidgets.QListWidget(self.frame_5)
+        self.listWidget2.setGeometry(QtCore.QRect(10, 350, 256, 192))
+        self.listWidget2.setObjectName("listWidget2")
+        
+        self.label_13 = QtWidgets.QLabel(self.frame_5)
+        self.label_13.setGeometry(QtCore.QRect(330, 290, 181, 17))
+        self.label_13.setObjectName("label_13")
+        
+        self.label_14 = QtWidgets.QLabel(self.frame_5)
+        self.label_14.setGeometry(QtCore.QRect(10, 320, 181, 17))
+        self.label_14.setObjectName("label_14")
+        
+        self.label_15 = QtWidgets.QLabel(self.frame_5)
+        self.label_15.setGeometry(QtCore.QRect(500, 200, 67, 17))
+        self.label_15.setObjectName("label_15")
+        
+        self.label_16 = QtWidgets.QLabel(self.frame_5)
+        self.label_16.setGeometry(QtCore.QRect(650, 50, 67, 17))
+        self.label_16.setObjectName("label_16")
+        
+        self.lineEdit_2 = QtWidgets.QLineEdit(self.frame_5)
+        self.lineEdit_2.setGeometry(QtCore.QRect(500, 80, 113, 25))
+        self.lineEdit_2.setReadOnly(True)
+        self.lineEdit_2.setObjectName("lineEdit_2")
+        
+        self.lineEdit_3 = QtWidgets.QLineEdit(self.frame_5)
+        self.lineEdit_3.setGeometry(QtCore.QRect(500, 150, 113, 25))
+        self.lineEdit_3.setReadOnly(True)
+        self.lineEdit_3.setObjectName("lineEdit_3")
+        
+        self.lineEdit_4 = QtWidgets.QLineEdit(self.frame_5)
+        self.lineEdit_4.setGeometry(QtCore.QRect(500, 230, 113, 25))
+        self.lineEdit_4.setReadOnly(True)
+        self.lineEdit_4.setObjectName("lineEdit_4")
+        
+        self.lineEdit_5 = QtWidgets.QLineEdit(self.frame_5)
+        self.lineEdit_5.setGeometry(QtCore.QRect(690, 50, 113, 25))
+        self.lineEdit_5.setReadOnly(True)
+        self.lineEdit_5.setObjectName("lineEdit_5")
+        
 
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
@@ -142,31 +209,69 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(_translate("MainWindow", "Heroes (Game)"))
         self.pushButton.setText(_translate("MainWindow", "Начать игру"))
         self.pushButton_2.setText(_translate("MainWindow", "Где здесь выход"))
+        
         self.label.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\">Приветствую тебя, путник</p><p align=\"center\"><br/><br/></p><p align=\"center\"><span style=\" font-size:16pt; font-weight:600;\">Тебе выпала честь стать героем, поэтому давай выбирай класс</span></p></body></html>"))
         self.label_2.setText(_translate("MainWindow", "Твое имя"))
         self.label_3.setText(_translate("MainWindow", "Класс"))
-        self.label_4.setText(_translate("MainWindow", "Ну и дату рождения, чтобы составить ваш гороскоп на сегодня"))
+        self.label_4.setText(_translate("MainWindow", "Ну и дату рождения, чтобы составить твой гороскоп на сегодня"))
         self.pushButton_3.setText(_translate("MainWindow", "Создать героя"))
-        self.label_5.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\">Так, персонажа создали.</p><p align=\"center\">Теперь самое время набрать свою команду</p><p align=\"center\"><br/></p><p align=\"center\">Ты можешь выбрать до пяти персонажей, юниты не могут быть одного типа</p><p align=\"center\"><br/></p><p align=\"center\"><br/></p></body></html>"))
+        
+        self.label_5.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\">Так, персонажа создали.</p><p align=\"center\">Теперь самое время набрать свою команду</p><p align=\"center\"><br/></p><p align=\"center\">Ты можешь выбрать до пяти персонажей</p><p align=\"center\"><br/></p><p align=\"center\"><br/></p></body></html>"))
         self.label_6.setText(_translate("MainWindow", "Воины"))
         self.label_8.setText(_translate("MainWindow", "Маги"))
         self.label_9.setText(_translate("MainWindow", "Лучники"))
         self.pushButton_4.setText(_translate("MainWindow", "Создать команду"))
         self.label_7.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:16pt; font-weight:600; font-style:italic; text-decoration: underline;\"> Твоя команда</span></p></body></html>"))
+        
+        self.pushButton_5.setText(_translate("MainWindow", "Начать путешествие"))
+        self.label_10.setText(_translate("MainWindow", "Ваше имя"))
+        self.label_11.setText(_translate("MainWindow", "Класс"))
+        self.label_12.setText(_translate("MainWindow", "Статистика по вашей команде"))
+        self.label_13.setText(_translate("MainWindow", "Статистика по локации"))
+        self.label_14.setText(_translate("MainWindow", "Было обнаружено "))
+        self.label_15.setText(_translate("MainWindow", "Золото"))
+        self.label_16.setText(_translate("MainWindow", "Счет"))
+
         self.pushButton.clicked.connect(self.func)
         self.pushButton_3.clicked.connect(self.func1)
         self.pushButton_4.clicked.connect(self.func2)
         self.pushButton_2.clicked.connect(sys.exit)
+        self.pushButton_5.clicked.connect(self.func3)
 
     def func(self):
         #changing frames
         self.frame.hide()
         self.frame_2.show()
 
+    def func3(self):
+        _translate = QtCore.QCoreApplication.translate
+
+        self.lineEdit_5.setText(_translate("MainWindow", "0"))
+        self.lineEdit_2.setText(_translate("MainWindow", self.squad.hero.name))
+        self.lineEdit_3.setText(_translate("MainWindow", self.squad.hero.type))
+        self.lineEdit_4.setText(_translate("MainWindow", str(self.squad.money)))
+
+        for i in self.squad.units:
+            self.listWidget1.addItem(i.to_string())
+
+        self.generate_enemies()
+
+        self.frame_4.hide()
+        self.frame_5.show()
+
     def func1(self):
         #getting info from form
         self.textbox_val = self.lineEdit.text()
         self.combobox_val = self.comboBox.currentText()
+
+        
+        if(self.textbox_val == ''):
+            return
+        
+        
+        self.hero = Hero(self.textbox_val, self.combobox_val)
+
+
 
         #changing frames
         self.frame_2.hide()
@@ -184,8 +289,17 @@ class Ui_MainWindow(object):
 
         for i in range(self.num_of_archers):
             self.a.append(Generator.gen_arch())
-        
-        
+
+    def generate_enemies(self):
+        self.enemies = []
+
+        amount = random.randint(1, 5)
+
+        for i in range(amount):
+            self.enemies.append(Squad())
+
+        for i in self.enemies:
+            self.listWidget2.addItem(i.to_string())
 
     def func2(self):
         #getting data and generating team
@@ -198,10 +312,13 @@ class Ui_MainWindow(object):
 
         self.generate_team()
 
-        for i in self.a:
+
+        self.squad = Squad(self.a, self.hero)
+
+        for i in self.squad.units:
             self.listwidget.addItem(i.to_string())
 
-        if summary <= 5:
+        if 0 < summary <= 5:
             #changing frames
             self.frame_3.hide()
             self.frame_4.show()    
