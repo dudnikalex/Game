@@ -1,5 +1,11 @@
 import sys, random
+
 from Unit import *
+from Hero import *
+from Mage import *
+from Warrior import *
+from Generator import *
+from Squad import *
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
@@ -191,6 +197,45 @@ class Ui_MainWindow(object):
         self.lineEdit_5.setReadOnly(True)
         self.lineEdit_5.setObjectName("lineEdit_5")
         
+        self.pushButton_8 = QtWidgets.QPushButton(self.frame_5)
+        self.pushButton_8.setGeometry(QtCore.QRect(500, 410, 151, 51))
+        self.pushButton_8.setObjectName("pushButton_8")
+
+        self.frame_6 = QtWidgets.QFrame(self.centralwidget)
+        self.frame_6.setGeometry(QtCore.QRect(0, 0, 841, 561))
+        self.frame_6.setAutoFillBackground(True)
+        self.frame_6.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame_6.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame_6.setObjectName("frame_6")
+        self.frame_6.hide()
+        self.listWidget_2 = QtWidgets.QListWidget(self.frame_6)
+        self.listWidget_2.setGeometry(QtCore.QRect(80, 90, 256, 192))
+        self.listWidget_2.setObjectName("listWidget_2")
+        self.listWidget_3 = QtWidgets.QListWidget(self.frame_6)
+        self.listWidget_3.setGeometry(QtCore.QRect(500, 90, 261, 192))
+        self.listWidget_3.setObjectName("listWidget_3")
+        self.label_17 = QtWidgets.QLabel(self.frame_6)
+        self.label_17.setGeometry(QtCore.QRect(80, 60, 67, 17))
+        self.label_17.setObjectName("label_17")
+        self.label_18 = QtWidgets.QLabel(self.frame_6)
+        self.label_18.setGeometry(QtCore.QRect(680, 60, 67, 17))
+        self.label_18.setObjectName("label_18")
+        self.pushButton_6 = QtWidgets.QPushButton(self.frame_6)
+        self.pushButton_6.setGeometry(QtCore.QRect(370, 130, 89, 25))
+        self.pushButton_6.setObjectName("pushButton_6")
+        self.pushButton_7 = QtWidgets.QPushButton(self.frame_6)
+        self.pushButton_7.setGeometry(QtCore.QRect(370, 200, 89, 25))
+        self.pushButton_7.setObjectName("pushButton_7")
+        self.pushButton_7.hide()
+        self.listWidget_4 = QtWidgets.QListWidget(self.frame_6)
+        self.listWidget_4.setGeometry(QtCore.QRect(80, 330, 681, 192))
+        self.listWidget_4.setObjectName("listWidget_4")
+        self.label_19 = QtWidgets.QLabel(self.frame_6)
+        self.label_19.setGeometry(QtCore.QRect(380, 300, 81, 17))
+        self.label_19.setObjectName("label_19")
+        self.label_20 = QtWidgets.QLabel(self.frame_6)
+        self.label_20.setGeometry(QtCore.QRect(380, 30, 81, 17))
+        self.label_20.setObjectName("label_20")
 
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
@@ -231,12 +276,54 @@ class Ui_MainWindow(object):
         self.label_14.setText(_translate("MainWindow", "Было обнаружено "))
         self.label_15.setText(_translate("MainWindow", "Золото"))
         self.label_16.setText(_translate("MainWindow", "Счет"))
+        self.pushButton_8.setText(_translate("MainWindow", "Попасть в мир"))
+
+        self.label_17.setText(_translate("MainWindow", "Вы"))
+        self.label_18.setText(_translate("MainWindow", "Ваш враг"))
+        self.pushButton_6.setText(_translate("MainWindow", "Напасть"))
+        self.pushButton_7.setText(_translate("MainWindow", "Защититься"))
+        self.label_19.setText(_translate("MainWindow", "Логи игры"))
+        self.label_20.setText(_translate("MainWindow", "Игра идет"))
 
         self.pushButton.clicked.connect(self.func)
         self.pushButton_3.clicked.connect(self.func1)
         self.pushButton_4.clicked.connect(self.func2)
         self.pushButton_2.clicked.connect(sys.exit)
         self.pushButton_5.clicked.connect(self.func3)
+        self.pushButton_8.clicked.connect(self.func4)
+        self.pushButton_6.clicked.connect(self.attack)
+        self.pushButton_7.clicked.connect(self.defend)
+
+    def convert(self, unit_string):
+        unit_string = unit_string.split(" ")
+        if unit_string[0] == 'Mage':
+            unit_string.pop(0)
+            unit_string.pop(0)
+            a = []
+            for i in unit_string:
+                a.append(i.split(":")[1])
+
+            unit = Mage(a[1], a[2], a[3], a[4], a[0])
+        
+        elif unit_string[0] == 'Warrior':
+            unit_string.pop(0)
+            unit_string.pop(0)
+            a = []
+            for i in unit_string:
+                a.append(i.split(":")[1])
+            unit = Warrior(a[1], a[2], a[3], a[4], a[0])
+
+        else:
+            unit_string.pop(0)
+            unit_string.pop(0)
+            a = []
+            
+            for i in unit_string:
+                a.append(i.split(":")[1])
+
+            unit = Archer(a[1], a[2], a[3], a[4], a[0])
+
+        return unit 
 
     def func(self):
         #changing frames
@@ -258,6 +345,99 @@ class Ui_MainWindow(object):
 
         self.frame_4.hide()
         self.frame_5.show()
+
+    def func4(self):
+        self.frame_5.hide()
+
+        for i in self.squad.units:
+            self.listWidget_2.addItem(i.to_string())
+        for i in self.enemies[0].units:
+            self.listWidget_3.addItem(i.to_string())
+    
+        self.frame_6.show()
+
+    def upd_list_widg_2(self):
+        self.listWidget_2.clear()
+        for i in self.squad.units:
+            self.listWidget_2.addItem(i.to_string())
+        self.listWidget_2.repaint()
+
+    def upd_list_widg_3(self, index):
+        self.listWidget_3.clear()
+        for i in self.enemies[index].units:
+            self.listWidget_3.addItem(i.to_string())
+        self.listWidget_3.repaint()
+
+    def attack(self):
+        selected = self.listWidget_2.selectedItems()
+        selected_e = self.listWidget_3.selectedItems()
+        
+        unit = self.convert(selected[0].text())
+        unit_e = self.convert(selected_e[0].text())
+
+        for i in range(len(self.enemies[0].units)):
+            if self.enemies[0].units[i].to_string() == unit_e.to_string():
+                self.enemies[0].units.pop(i)
+                break
+
+        q = int(unit_e.health)        
+        q -= int(unit.damage)
+        unit_e.health = q
+
+        if unit_e.health > 0:
+            self.enemies[0].units.append(unit_e)
+            self.listWidget_4.addItem("Боец ранен!")
+        else:
+            self.listWidget_4.addItem("Боец убит!")
+        
+        if len(self.enemies[0].units) == 0:
+            msg = QtWidgets.QMessageBox()
+            msg.setWindowTitle("Информация")
+            msg.setText("Вы выиграли!")
+            result = msg.setStandardButtons(QtWidgets.QMessageBox.Ok)
+            retval = msg.exec_()
+            if retval == QtWidgets.QMessageBox.Ok:
+                print("Ок")
+
+
+        self.upd_list_widg_3(0)
+
+        self.pushButton_6.hide()
+        self.pushButton_7.show()
+
+    def defend(self):
+        unit = self.squad.units[random.randint(0, len(self.squad.units) - 1)]
+        unit_e = self.enemies[0].units[random.randint(0, len(self.enemies[0].units) - 1)]
+
+        for i in range(len(self.squad.units)):
+            if self.squad.units[i].to_string() == unit.to_string():
+                self.squad.units.pop(i)
+                break
+
+        q = int(unit.health)        
+        q -= int(unit_e.damage)
+        unit.health = q
+    
+        if unit.health > 0:
+            self.squad.units.append(unit)
+            self.listWidget_4.addItem("Боец ранен!")
+        else:
+            self.listWidget_4.addItem("Боец убит!")
+            
+        if len(self.squad.units) == 0:
+            msg = QtWidgets.QMessageBox()
+            msg.setWindowTitle("Информация")
+            msg.setText("Вы проиграли!")
+            result = msg.setStandardButtons(QtWidgets.QMessageBox.Ok)
+            retval = msg.exec_()
+            if retval == QtWidgets.QMessageBox.Ok:
+                sys.exit(0)
+
+        self.upd_list_widg_2()
+
+        self.pushButton_7.hide()
+        self.pushButton_6.show()
+
 
     def func1(self):
         #getting info from form
@@ -293,7 +473,7 @@ class Ui_MainWindow(object):
     def generate_enemies(self):
         self.enemies = []
 
-        amount = random.randint(1, 5)
+        amount = 1
 
         for i in range(amount):
             self.enemies.append(Squad())
@@ -332,6 +512,7 @@ class mywindow(QtWidgets.QMainWindow):
 
 
 app = QtWidgets.QApplication([])
+app.setStyle('Fusion')
 application = mywindow()
 application.show()
  
